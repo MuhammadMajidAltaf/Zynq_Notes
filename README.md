@@ -36,34 +36,34 @@ Notes for settings up Zynq on Digilent Zybo
 
 Note: My compiled devicetree file does not work without modififcation. One solution was to decompile device tree file
 from other example project (http://www.instructables.com/files/orig/FAJ/VKWE/I7CCBSBN/FAJVKWEI7CCBSBN.zip) and
-modifying as required.
+modifying as required.  
 
-To compile/decompile devicetree file/blob: 
+To compile/decompile devicetree file/blob:  
 
-dtc -I <input type (dts:dtb)> -O <output type (dts:dtb)> -o <outputfile> <inputfile> 
+dtc -I <input type (dts:dtb)> -O <output type (dts:dtb)> -o <outputfile> <inputfile>  
 
 ------------------------------------------------------------------------------------------------------
 
-Note: If using digilent repositories, make sure to use branch 'master-next' 
+Note: If using digilent repositories, make sure to use branch 'master-next'  
 
 ------------------------------------------------------------------------------------------------------
 
 ## To unpack the linaro filesystem onto the Zynq SD card:
 
-mkdir –p Documents/sd_ext4 
-sudo mount /dev/sd<X>2 Documents/sd_ext4 
-cd <path>/linaro/binary/boot/filesystem.dir 
-sudo rsync -a ./ /home/digilent/Documents/sd_ext4 
+mkdir –p Documents/sd_ext4  
+sudo mount /dev/sd<X>2 Documents/sd_ext4  
+cd <path>/linaro/binary/boot/filesystem.dir  
+sudo rsync -a ./ /home/digilent/Documents/sd_ext4  
 
 ------------------------------------------------------------------------------------------------------
 
 Standard kernel boot parameters (in devicetree.dts):
 
-bootargs = "console=ttyPS0,115200 root=/dev/mmcblk0p2 rw earlyprintk rootfstype=ext4 rootwait devtmpfs.mount=1"; 
+bootargs = "console=ttyPS0,115200 root=/dev/mmcblk0p2 rw earlyprintk rootfstype=ext4 rootwait devtmpfs.mount=1";  
 
 ------------------------------------------------------------------------------------------------------
 
-## To set the boot loader (u-boot.elf) to load the filesystem instead of the ramdisk, modify as such:
+## To set the boot loader (u-boot.elf) to load the filesystem instead of the ramdisk, modify as such:  
 
 Before:
 
@@ -88,23 +88,23 @@ After:
 
 And then recompile:
 
-	$ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- clean 
+	$ make CROSS_COMPILE=arm-xilinx-linux-gnueabi- clean    
 
 ------------------------------------------------------------------------------------------------------
 
 ## Required environment variables for cross compilation:
 
-export ARCH=arm 
-export CROSS_COMPILE=arm-xilinx-linux-gnueabi- 
-source ~/Applications/Xilinx/Vivado/Vivado/2015.4/settings64.sh 
-export PATH=~/Documents/Projects/Wanderings/Zybo/u_boot/u-boot-Digilent-Dev/tools:$PATH 
+export ARCH=arm  
+export CROSS_COMPILE=arm-xilinx-linux-gnueabi-  
+source ~/Applications/Xilinx/Vivado/Vivado/2015.4/settings64.sh  
+export PATH=~/Documents/Projects/Wanderings/Zybo/u_boot/u-boot-Digilent-Dev/tools:$PATH  
 
 ------------------------------------------------------------------------------------------------------
 
 Use minicom to get startup sequence as it does not require an active uart connection (it may initially 
 but not for power on/power off)
 
-sudo minicom -D /dev/ttyUSB<X> 
+sudo minicom -D /dev/ttyUSB<X>  
 
 ------------------------------------------------------------------------------------------------------
 
@@ -114,7 +114,7 @@ Bootargs must be equal to:
 	
 bootargs = "console=ttyPS0,115200 root=/dev/mmcblk0p2 rw earlyprintk rootfstype=ext4 rootwait";
 	linux,stdout-path = "/amba@0/serial@e0001000";
-} ;
+} ;  
 
-CPU clocks must be equal to:
-	clocks = <&clkc 2>;
+CPU clocks must be equal to:  
+	clocks = <&clkc 2>;  
