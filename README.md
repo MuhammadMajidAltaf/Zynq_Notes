@@ -125,7 +125,7 @@ When creating new IP, make sure to set 'Name' to 'S_AXI' as opposed to 'S00_AXI'
 
 ------------------------------------------------------------------------------------------------------
 
-## Creating the FSBL
+## Creating the Boot Image (BOOT.BIN)
 
 To create the zynq boot image (BOOT.bin) from the command line, create a file called 'output.bif' with the contents:  
   
