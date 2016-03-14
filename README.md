@@ -112,9 +112,31 @@ sudo minicom -D /dev/ttyUSB<X>
 
 Bootargs must be equal to:
 	
-bootargs = "console=ttyPS0,115200 root=/dev/mmcblk0p2 rw earlyprintk rootfstype=ext4 rootwait";
-	linux,stdout-path = "/amba@0/serial@e0001000";
-} ;  
+bootargs = "console=ttyPS0,115200 root=/dev/mmcblk0p2 rw earlyprintk rootfstype=ext4 rootwait";  
 
 CPU clocks must be equal to:  
 	clocks = <&clkc 2>;  
+
+------------------------------------------------------------------------------------------------------
+
+## Creating new IP
+
+When creating new IP, make sure to set 'Name' to 'S_AXI' as opposed to 'S00_AXI'  
+
+------------------------------------------------------------------------------------------------------
+
+## Creating the FSBL
+
+To create the zynq boot image (BOOT.bin) from the command line, create a file called 'output.bif' with the contents:  
+  
+the_ROM_image:  
+{  
+	[bootloader]/<full path>/zybo_base_system/source/vivado/hw/zybo_bsd/zybo_bsd.sdk/FSBL/Debug/FSBL.elf  
+	/<full path>/zybo_base_system/source/vivado/hw/zybo_bsd/zybo_bsd.sdk/system_wrapper_hw_platform_0/system_wrapper.bit  
+	/<full path>/zybo_base_system/sd_image/u-boot.elf  
+}  
+  
+And then run the following commands:  
+  
+$ source /<path to xilinx install>/Xilinx/Vivado/Vivado/2015.4/settings64.sh  
+$ bootgen -image output.bif -o /<full path>/zybo_base_system/sd_image/BOOT.bin -w on  
