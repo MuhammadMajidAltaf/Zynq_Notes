@@ -131,12 +131,12 @@ To create the zynq boot image (BOOT.bin) from the command line, create a file ca
   
 the_ROM_image:  
 {  
-	[bootloader]/<full path>/zybo_base_system/source/vivado/hw/zybo_bsd/zybo_bsd.sdk/FSBL/Debug/FSBL.elf  
-	/<full path>/zybo_base_system/source/vivado/hw/zybo_bsd/zybo_bsd.sdk/system_wrapper_hw_platform_0/system_wrapper.bit  
-	/<full path>/zybo_base_system/sd_image/u-boot.elf  
+        [bootloader]/\<full path\>/zybo_base_system/source/vivado/hw/zybo_bsd/zybo_bsd.sdk/FSBL/Debug/FSBL.elf  
+        /\<full path\>/zybo_base_system/source/vivado/hw/zybo_bsd/zybo_bsd.sdk/system_wrapper_hw_platform_0/system_wrapper.bit  
+        /\<full path\>/zybo_base_system/sd_image/u-boot.elf  
 }  
   
 And then run the following commands:  
   
-$ source /<path to xilinx install>/Xilinx/Vivado/Vivado/2015.4/settings64.sh  
-$ bootgen -image output.bif -o /<full path>/zybo_base_system/sd_image/BOOT.bin -w on  
+$ source /\<path to xilinx install\>/Xilinx/Vivado/Vivado/2015.4/settings64.sh  
+$ bootgen -image output.bif -o /\<full path>/zybo_base_system/sd_image/BOOT.bin -w on  
